@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --cyan: #00f3ff;
+  --purple: #b026ff;
+  --magenta: #ff00a0;
+  --gold: #ffd700;
+  --dark-bg: #0a0a12;
+  --panel-bg: rgba(15, 15, 30, 0.8);
+  --border-glow: rgba(0, 243, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #0a0a12;
+  font-family: 'Inter', sans-serif;
+  color: #e0e0ff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+::-webkit-scrollbar-thumb { background: rgba(0,243,255,0.4); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,243,255,0.7); }
+
+/* Utility classes */
+.font-orbitron { font-family: 'Orbitron', monospace; }
+.font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+
+/* Glow effects */
+.glow-cyan { box-shadow: 0 0 20px rgba(0, 243, 255, 0.4), 0 0 40px rgba(0, 243, 255, 0.1); }
+.glow-purple { box-shadow: 0 0 20px rgba(176, 38, 255, 0.4), 0 0 40px rgba(176, 38, 255, 0.1); }
+.text-glow-cyan { text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 0 0 20px rgba(0, 243, 255, 0.4); }
+.text-glow-purple { text-shadow: 0 0 10px rgba(176, 38, 255, 0.8), 0 0 20px rgba(176, 38, 255, 0.4); }
+
+/* Glassmorphism panels */
+.glass-panel {
+  background: rgba(10, 10, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  border-radius: 12px;
+}
+
+.glass-panel-purple {
+  background: rgba(15, 5, 30, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(176, 38, 255, 0.2);
+  border-radius: 12px;
+}
+
+/* Neon borders */
+.border-cyan { border: 1px solid rgba(0, 243, 255, 0.4); }
+.border-purple { border: 1px solid rgba(176, 38, 255, 0.4); }
+
+/* Scanline overlay */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 243, 255, 0.015) 2px,
+    rgba(0, 243, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* HUD corner decorations */
+.hud-corner::before, .hud-corner::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: #00f3ff;
+  border-style: solid;
+}
+.hud-corner::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+.hud-corner::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+/* Animated grid */
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 40px; }
+}
+
+.animated-grid {
+  background-image:
+    linear-gradient(rgba(0,243,255,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,243,255,0.09) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridScroll 8s linear infinite;
+}
+
+/* Planet pulse */
+@keyframes planetPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: #00f3ff;
+  margin-left: 2px;
+}
+
+/* Alert flash */
+@keyframes alertFlash {
+  0%, 100% { border-color: rgba(255, 0, 160, 0.3); }
+  50% { border-color: rgba(255, 0, 160, 0.9); box-shadow: 0 0 15px rgba(255,0,160,0.5); }
+}
+.alert-flash { animation: alertFlash 2s ease-in-out infinite; }
+
+/* Neon badge */
+.neon-badge {
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid rgba(0, 243, 255, 0.5);
+  color: #00f3ff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Loading bar */
+@keyframes loadBar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* Rotate animation */
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.rotate-slow { animation: rotateSlow 20s linear infinite; }
+
+/* Particle float */
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  100% { transform: translateY(-40px) scale(0.5); opacity: 0; }
+}
